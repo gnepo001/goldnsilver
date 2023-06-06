@@ -1,0 +1,25 @@
+{
+  "frames": {
+    "player1.png": {
+      "frame": { "x": 0, "y": 0, "w": 32, "h": 32 }
+    },
+    "player2.png": {
+      "frame": { "x": 32, "y": 0, "w": 32, "h": 32 }
+    },
+    "player3.png": {
+      "frame": { "x": 64, "y": 0, "w": 32, "h": 32 }
+    },
+    "player4.png": {
+      "frame": { "x": 96, "y": 0, "w": 32, "h": 32 }
+    },
+    "player5.png": {
+      "frame": { "x": 128, "y": 0, "w": 32, "h": 32 }
+    },
+    "player6.png": {
+      "frame": { "x": 163, "y": 0, "w": 32, "h": 32 }
+    },
+    "player7.png": {
+      "frame": { "x": 0, "y": 32, "w": 32, "h": 32 }
+    }
+  }
+}
