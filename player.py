@@ -15,6 +15,7 @@ class Player(pygame.sprite.Sprite):
         self.file = SpriteSheet("sprites.png")
 
         self.walk_frames = [
+            self.file.parse_sprite("player3.png"),
             self.file.parse_sprite("player4.png"),
             self.file.parse_sprite("player5.png"),
             #self.file.parse_sprite("player6.png")
