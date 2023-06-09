@@ -8,7 +8,6 @@ class Game:
         pygame.init()
         self.clock = pygame.time.Clock()
         self.screen = pygame.display.set_mode((S.SCREEN_WIDTH,S.SCREEN_HEIGHT))
-
         self.level = Level()
         
     def run(self):

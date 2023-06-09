@@ -12,6 +12,7 @@ class Player(pygame.sprite.Sprite):
         self.status = "down"
         self.z = 7
 
+        #movement
         self.direction = pygame.math.Vector2(self.rect.center)
         self.speed = 200
         self.pos = pygame.math.Vector2(self.rect.center)
@@ -23,7 +24,6 @@ class Player(pygame.sprite.Sprite):
             self.file.parse_sprite("player3.png"),
             self.file.parse_sprite("player4.png"),
             self.file.parse_sprite("player5.png"),
-            #self.file.parse_sprite("player6.png")
         ]
        
         self.idle_frames = [
@@ -60,8 +60,6 @@ class Player(pygame.sprite.Sprite):
         self.image = self.idle_frames[int(self.frame_index)]
     
     def move(self,dt):
-        print("direct: "+str(self.direction))
-        print("directMag: "+str(self.direction.magnitude()))
         if self.direction.magnitude() > 0:
             self.direction = self.direction.normalize()
         self.pos.x += self.direction.x * self.speed * dt
@@ -69,19 +67,9 @@ class Player(pygame.sprite.Sprite):
 
         self.pos.y += self.direction.y * self.speed * dt
         self.rect.centery = round(self.pos.y)
-    
-        print(self.pos)
 
 
     def update(self,dt):
         self.input()
         self.move(dt)
         self.animate(dt)
-        #print(self.frame_index)
-        #self.frame_index += 8 * dt
-        #if self.frame_index >=len(self.idle_frames):
-        #    self.frame_index = 0
-
-        #self.image = self.idle_frames[int(self.frame_index)]
-
-    

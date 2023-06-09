@@ -12,12 +12,14 @@ class Tile(pygame.sprite.Sprite):
         surface.blit(self.image, (self.rect.x,self.rect.y))
 
 class TileMap():
+    #takes in file name and spritesheet data, group of tiles
     def __init__(self, filename, spritesheet,groups):
         self.tile_size = 96
         self.current_shift_x = 0
         self.shift_map = False
         self.start_x, self.start_y = 0, 0
         self.spritesheet = spritesheet
+        #load in tiles
         self.tiles = self.load_tiles(filename,groups)
         self.map_surface = pygame.Surface((self.map_w, self.map_h))
         self.map_surface.set_colorkey((0, 0, 0))
