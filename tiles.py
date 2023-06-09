@@ -1,23 +1,24 @@
 import pygame, csv, os
 
 class Tile(pygame.sprite.Sprite):
-    def __init__(self,image,x,y,spritesheet):
-        pygame.sprite.Sprite.__init__(self)
+    def __init__(self,image,x,y,spritesheet,groups,z):
+        super().__init__(groups)
         self.image = spritesheet.parse_sprite(image)
         self.rect = self.image.get_rect()
         self.rect.x, self.rect.y = x,y
+        self.z = z
 
     def draw(self, surface):
         surface.blit(self.image, (self.rect.x,self.rect.y))
 
 class TileMap():
-    def __init__(self, filename, spritesheet):
+    def __init__(self, filename, spritesheet,groups):
         self.tile_size = 96
         self.current_shift_x = 0
         self.shift_map = False
         self.start_x, self.start_y = 0, 0
         self.spritesheet = spritesheet
-        self.tiles = self.load_tiles(filename)
+        self.tiles = self.load_tiles(filename,groups)
         self.map_surface = pygame.Surface((self.map_w, self.map_h))
         self.map_surface.set_colorkey((0, 0, 0))
         self.load_map()
@@ -37,7 +38,7 @@ class TileMap():
                 map.append(list(row))
         return map
 
-    def load_tiles(self, filename):
+    def load_tiles(self, filename,groups):
         tiles = []
         map = self.read_csv(filename)
         x, y = 0, 0
@@ -47,9 +48,9 @@ class TileMap():
                 if tile == '0':
                     self.start_x, self.start_y = x * self.tile_size, y * self.tile_size
                 elif tile == '1':
-                    tiles.append(Tile('brown.png', x * self.tile_size, y * self.tile_size, self.spritesheet))
+                    tiles.append(Tile('brown.png', x * self.tile_size, y * self.tile_size, self.spritesheet,groups, z=1))
                 elif tile == '2':
-                    tiles.append(Tile('green.png', x * self.tile_size, y * self.tile_size, self.spritesheet))
+                    tiles.append(Tile('green.png', x * self.tile_size, y * self.tile_size, self.spritesheet,groups, z=1))
                     # Move to next tile in current row
                 x += 1
 
