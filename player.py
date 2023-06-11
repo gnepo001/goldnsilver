@@ -56,7 +56,7 @@ class Player(pygame.sprite.Sprite):
         if self.status == "idle":
             self.frame_index += 4 * dt
         else:
-            self.frame_index += 6 * dt
+            self.frame_index += 8 * dt
         if self.frame_index >=len(self.animations[self.status]):
             self.frame_index = 0
             print(self.status)
