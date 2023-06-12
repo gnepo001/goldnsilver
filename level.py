@@ -6,6 +6,7 @@ from timer import Timer
 from tiles import TileMap
 from spritesheet import SpriteSheet
 
+from entity import Enemy
 
 class Level:
     def __init__(self):
@@ -17,6 +18,7 @@ class Level:
         self.player = Player((S.SCREEN_WIDTH/2,S.SCREEN_HEIGHT/2),self.all_sprites)
         file = SpriteSheet("tiles.png")
         self.map = TileMap('tile_map.csv',file,groups=self.all_sprites)
+        self.enemies = Enemy((50,50),self.all_sprites)
 
     def run(self,dt):
         self.display_surface.fill('black')
