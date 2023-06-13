@@ -19,6 +19,8 @@ class Level:
         file = SpriteSheet("tiles.png")
         self.map = TileMap('tile_map.csv',file,groups=self.all_sprites)
         self.enemies = Enemy((50,50),self.all_sprites)
+        self.enemies = Enemy((400,400),self.all_sprites)
+   
 
     def run(self,dt):
         self.display_surface.fill('black')

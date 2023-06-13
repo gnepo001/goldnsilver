@@ -8,6 +8,8 @@ class Entity(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(center=pos)
         self.z = None
 
+
+
 class Enemy(pygame.sprite.Sprite):
     def __init__(self,pos,group):
         super().__init__(group)
@@ -56,5 +58,5 @@ class Enemy(pygame.sprite.Sprite):
 
     def update(self,dt):
         
-        self.move(dt)
+        #self.move(dt)
         self.animate(dt)
