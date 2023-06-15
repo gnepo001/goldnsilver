@@ -53,6 +53,8 @@ class TileMap():
                     tiles.append(Tile('brown.png', x * self.tile_size, y * self.tile_size, self.spritesheet,groups, z=1))
                 elif tile == '2':
                     tiles.append(Tile('green.png', x * self.tile_size, y * self.tile_size, self.spritesheet,groups, z=1))
+                elif tile == '3':
+                    tiles.append(Tile('stone.png', x * self.tile_size, y * self.tile_size, self.spritesheet,groups, z=1))
                     # Move to next tile in current row
                 x += 1
 
