@@ -18,8 +18,8 @@ class Level:
         self.player = Player((S.SCREEN_WIDTH/2,S.SCREEN_HEIGHT/2),self.all_sprites)
         file = SpriteSheet("tiles.png")
         self.map = TileMap('tile_map.csv',file,groups=self.all_sprites)
-        self.enemies = Enemy((160,140),self.all_sprites)
-        self.enemies = Enemy((200,200),self.all_sprites)
+        self.enemies = Enemy((160,140),self.all_sprites,self.player)
+        #self.enemies = Enemy((200,200),self.all_sprites)
    
 
     def run(self,dt):
