@@ -8,6 +8,9 @@
     },
     "stone.png": {
       "frame": { "x": 64, "y": 0, "w": 32, "h": 32 }
+    },
+    "brown_stairs.png": {
+      "frame": { "x": 96, "y": 0, "w": 32, "h": 32 }
     }
   }
 }

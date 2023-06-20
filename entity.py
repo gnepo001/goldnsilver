@@ -49,10 +49,10 @@ class Enemy(pygame.sprite.Sprite):
         self.image = self.animations[self.status][int(self.frame_index)]
     
     def move(self,dt):
-        if self.dir = False and self.pos.x <= 300:
-        if self.pos.x <= 300:
-            self.pos.x += 1 * self.speed * dt
-            self.rect.centerx = round(self.pos.x)
+        if self.dir == False and self.pos.x <= 300:
+            if self.pos.x <= 300:
+                self.pos.x += 1 * self.speed * dt
+                self.rect.centerx = round(self.pos.x)
         else:
             self.pos.x -= 1 * self.speed * dt
             self.rect.centerx = round(self.pos.x)
@@ -62,13 +62,13 @@ class Enemy(pygame.sprite.Sprite):
     def patrol(self,player):
         #if player.pos.x and player.pos.y <= (self.pos.x+100) and (self.pos.y+100):
         #    print("inrange")
-        if player.pos.x <= (self.pos.x+400):
-            if player.pos.y <= self.pos.y+400:
+        if player.pos.x <= (self.pos.x+300):
+            if player.pos.y <= self.pos.y+300:
                 print("inrange")
                 print('fire')
 
     def update(self,dt):
         
-        self.move(dt)
+        #self.move(dt)
         self.patrol(self.player)
         self.animate(dt)
