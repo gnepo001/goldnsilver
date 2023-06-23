@@ -7,6 +7,7 @@ class Entity(pygame.sprite.Sprite):
         self.image = None
         self.rect = self.image.get_rect(center=pos)
         self.z = None
+        
 
 
 
@@ -21,6 +22,7 @@ class Enemy(pygame.sprite.Sprite):
         self.z = 7
         self.player = player
         self.dir = False
+       
 
         self.direction = pygame.math.Vector2(self.rect.center)
         self.speed = 200

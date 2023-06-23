@@ -12,12 +12,18 @@ class Level:
     def __init__(self):
         self.display_surface = pygame.display.get_surface()
         self.all_sprites = CameraGroup()
+        self.collision_sprites = pygame.sprite.Group()
         self.setup()
 
     def setup(self):
-        self.player = Player((S.SCREEN_WIDTH/2,S.SCREEN_HEIGHT/2),self.all_sprites)
+        #self.player = Player((S.SCREEN_WIDTH/2,S.SCREEN_HEIGHT/2),self.all_sprites)
         file = SpriteSheet("tiles.png")
-        self.map = TileMap('tile_map.csv',file,groups=self.all_sprites)
+        self.map = TileMap('tile_map.csv',file,groups=self.all_sprites,colli=self.collision_sprites)
+        self.player = Player(
+            pos=(2400,2300),
+            group=self.all_sprites,
+            collision_sprites=self.collision_sprites
+            )
         self.enemies = Enemy((160,140),self.all_sprites,self.player)
         #self.enemies = Enemy((200,200),self.all_sprites)
    

@@ -11,6 +11,9 @@
     },
     "brown_stairs.png": {
       "frame": { "x": 96, "y": 0, "w": 32, "h": 32 }
+    },
+    "water.png": {
+      "frame": { "x": 128, "y": 0, "w": 32, "h": 32 }
     }
   }
 }
