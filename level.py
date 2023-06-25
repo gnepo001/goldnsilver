@@ -6,7 +6,7 @@ from timer import Timer
 from tiles import TileMap
 from spritesheet import SpriteSheet
 
-from entity import Enemy
+from entity import Enemy,Key
 
 class Level:
     def __init__(self):
@@ -24,7 +24,8 @@ class Level:
             group=self.all_sprites,
             collision_sprites=self.collision_sprites
             )
-        self.enemies = Enemy((160,140),self.all_sprites,self.player)
+        self.enemies = Enemy((2400,1800),self.all_sprites,self.player)
+        self.key = Key((2400,2400),self.all_sprites)
         #self.enemies = Enemy((200,200),self.all_sprites)
    
 

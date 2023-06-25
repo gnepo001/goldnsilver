@@ -1,7 +1,7 @@
 import pygame, csv, os
 
 class Tile(pygame.sprite.Sprite):
-    def __init__(self,image,x,y,spritesheet,groups,z):
+    def __init__(self,image=None,x=0,y=0,spritesheet=None,groups=None,z=0):
         super().__init__(groups)
         self.image = spritesheet.parse_sprite(image)
         self.rect = self.image.get_rect()
@@ -11,19 +11,15 @@ class Tile(pygame.sprite.Sprite):
     def draw(self, surface):
         surface.blit(self.image, (self.rect.x,self.rect.y))
 
+class Barrier(Tile):
+    def __init__(self,image,x,y,spritesheet,groups,colli,z):
+        super().__init__(image,x,y,spritesheet,groups=[groups,colli],z=z)
+        self.hitbox = self.rect.copy().inflate(5,2)
+
 class Stone(Tile):
     def __init__(self,image,x,y,spritesheet,groups,colli,z):
         super().__init__(image,x,y,spritesheet,groups=[groups,colli],z=z)
-        #self.image = spritesheet.parse_sprite(image)
-        #self.rect = self.image.get_rect()
-        #self.rect.x, self.rect.y = x,y
-        #self.z = z
-        #self.hitbox = self.rect.copy()
         self.hitbox = self.rect.copy().inflate(5,2)
-
-    def draw(self,surface):
-        pygame.draw.rect(surface,"red",self.hitbox)
-
 
 class TileMap():
     #takes in file name and spritesheet data, group of tiles
@@ -74,6 +70,8 @@ class TileMap():
                     tiles.append(Tile('brown_stairs.png', x * self.tile_size, y * self.tile_size, self.spritesheet,groups, z=1))
                 elif tile == '5':
                     tiles.append(Tile('water.png', x * self.tile_size, y * self.tile_size, self.spritesheet,groups, z=1))
+                elif tile == '6':
+                    tiles.append(Barrier('water.png', x * self.tile_size, y * self.tile_size, self.spritesheet,groups,colli, z=1))
                     # Move to next tile in current row
                 x += 1
 

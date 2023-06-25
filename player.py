@@ -16,7 +16,7 @@ class Player(pygame.sprite.Sprite):
 
         #movement
         self.direction = pygame.math.Vector2(self.rect.center)
-        self.speed = 200
+        self.speed = 300
         self.pos = pygame.math.Vector2(self.rect.center)
 
         #collison
@@ -65,7 +65,7 @@ class Player(pygame.sprite.Sprite):
             self.frame_index += 8 * dt
         if self.frame_index >=len(self.animations[self.status]):
             self.frame_index = 0
-            print(self.status)
+            #print(self.status)
 
         self.image = self.animations[self.status][int(self.frame_index)]
 

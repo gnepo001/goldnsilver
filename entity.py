@@ -9,7 +9,28 @@ class Entity(pygame.sprite.Sprite):
         self.z = None
         
 
+class Key(pygame.sprite.Sprite):
+    def __init__(self,pos,group):
+        super().__init__(group)
+        self.import_assets()
+        self.frame_index = 0
+        self.image = self.animations[self.frame_index]
+        self.rect = self.image.get_rect(center=pos)
+        self.z = 7
 
+    def import_assets(self):
+        self.file = SpriteSheet("sprites.png")
+        self.animations = [self.file.parse_sprite("key1.png"),self.file.parse_sprite("key2.png")]
+        
+
+    def animate(self,dt):
+        self.frame_index += 6 * dt
+        if self.frame_index >=len(self.animations):
+            self.frame_index = 0
+        self.image = self.animations[int(self.frame_index)]
+
+    def update(self,dt):
+        self.animate(dt)
 
 class Enemy(pygame.sprite.Sprite):
     def __init__(self,pos,group,player):
