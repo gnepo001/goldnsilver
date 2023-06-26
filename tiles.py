@@ -72,6 +72,12 @@ class TileMap():
                     tiles.append(Tile('water.png', x * self.tile_size, y * self.tile_size, self.spritesheet,groups, z=1))
                 elif tile == '6':
                     tiles.append(Barrier('water.png', x * self.tile_size, y * self.tile_size, self.spritesheet,groups,colli, z=1))
+                elif tile == '7':
+                    tiles.append(Barrier('stone_greenTop.png', x * self.tile_size, y * self.tile_size, self.spritesheet,groups,colli, z=1))
+                elif tile == '8':
+                    tiles.append(Barrier('tree.png', x * self.tile_size, y * self.tile_size, self.spritesheet,groups,colli, z=1))
+                elif tile == '9':
+                    tiles.append(Barrier('tree_2.png', x * self.tile_size, y * self.tile_size, self.spritesheet,groups,colli, z=1))
                     # Move to next tile in current row
                 x += 1
 
