@@ -21,6 +21,11 @@ class Stone(Tile):
         super().__init__(image,x,y,spritesheet,groups=[groups,colli],z=z)
         self.hitbox = self.rect.copy().inflate(5,2)
 
+class Stairs(Tile):
+    def __init__(self,image,x,y,spritesheet,groups,colli,z):
+        super().__init__(image,x,y,spritesheet,groups=[groups,colli],z=z)
+        self.enterbox = self.rect.copy().inflate(5,2)
+
 class TileMap():
     #takes in file name and spritesheet data, group of tiles
     def __init__(self, filename, spritesheet,groups,colli):
@@ -67,7 +72,7 @@ class TileMap():
                 elif tile == '3':
                     tiles.append(Stone('stone.png', x * self.tile_size, y * self.tile_size, self.spritesheet,groups,colli, z=1))
                 elif tile == '4':
-                    tiles.append(Tile('brown_stairs.png', x * self.tile_size, y * self.tile_size, self.spritesheet,groups, z=1))
+                    tiles.append(Stairs('brown_stairs.png', x * self.tile_size, y * self.tile_size, self.spritesheet,groups,colli, z=1))
                 elif tile == '5':
                     tiles.append(Tile('water.png', x * self.tile_size, y * self.tile_size, self.spritesheet,groups, z=1))
                 elif tile == '6':
@@ -78,6 +83,10 @@ class TileMap():
                     tiles.append(Barrier('tree.png', x * self.tile_size, y * self.tile_size, self.spritesheet,groups,colli, z=1))
                 elif tile == '9':
                     tiles.append(Barrier('tree_2.png', x * self.tile_size, y * self.tile_size, self.spritesheet,groups,colli, z=1))
+                elif tile == '10':
+                    tiles.append(Tile('purple_stone.png', x * self.tile_size, y * self.tile_size, self.spritesheet,groups, z=1))
+                elif tile == '11':
+                    tiles.append(Stone('purple_brick.png', x * self.tile_size, y * self.tile_size, self.spritesheet,groups,colli, z=1))
                     # Move to next tile in current row
                 x += 1
 

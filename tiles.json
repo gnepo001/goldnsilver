@@ -23,6 +23,12 @@
     },
     "tree_2.png": {
       "frame": { "x": 224, "y": 0, "w": 32, "h": 32 }
+    },
+    "purple_stone.png": {
+      "frame": { "x": 256, "y": 0, "w": 32, "h": 32 }
+    },
+    "purple_brick.png": {
+      "frame": { "x": 288, "y": 0, "w": 32, "h": 32 }
     }
   }
 }

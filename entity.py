@@ -67,7 +67,7 @@ class Enemy(pygame.sprite.Sprite):
             self.frame_index += 8 * dt
         if self.frame_index >=len(self.animations[self.status]):
             self.frame_index = 0
-            print(self.status)
+            #print(self.status)
 
         self.image = self.animations[self.status][int(self.frame_index)]
     
@@ -87,8 +87,9 @@ class Enemy(pygame.sprite.Sprite):
         #    print("inrange")
         if player.pos.x <= (self.pos.x+300):
             if player.pos.y <= self.pos.y+300:
-                print("inrange")
-                print('fire')
+                pass
+                #print("inrange")
+                #print('fire')
 
     def update(self,dt):
         

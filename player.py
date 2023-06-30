@@ -85,6 +85,7 @@ class Player(pygame.sprite.Sprite):
         self.hitbox.centery = round(self.pos.y)
         self.rect.centery = self.hitbox.centery
         self.collision('vertical')
+        self.enter_room()
 
     def collision(self,direction):
         for sprite in self.collision_sprites.sprites():
@@ -105,6 +106,14 @@ class Player(pygame.sprite.Sprite):
                             self.hitbox.top = sprite.hitbox.bottom
                         self.rect.centery = self.hitbox.centery
                         self.pos.y = self.hitbox.centery
+
+    def enter_room(self):
+        for sprite in self.collision_sprites.sprites():
+            if hasattr(sprite,'enterbox'):
+                if sprite.enterbox.colliderect(self.hitbox):
+                    print("room enter")
+                    self.pos.x = 6400
+                    self.pos.y = 2000
 
 
 
