@@ -19,6 +19,9 @@ class Player(pygame.sprite.Sprite):
         self.speed = 300
         self.pos = pygame.math.Vector2(self.rect.center)
 
+        self.location = "overworld"
+        self.temp_pos = pygame.math.Vector2()
+
         #collison
         #self.hitbox = self.rect.copy().inflate((-126,-70))
         self.hitbox = self.rect.copy().inflate((-30,-30))
@@ -111,9 +114,15 @@ class Player(pygame.sprite.Sprite):
         for sprite in self.collision_sprites.sprites():
             if hasattr(sprite,'enterbox'):
                 if sprite.enterbox.colliderect(self.hitbox):
-                    print("room enter")
-                    self.pos.x = 6400
-                    self.pos.y = 2000
+                    if self.location == "overworld":
+                        self.temp_pos = self.pos[:] #when copying lists or vectors/arrys a simple assigment wont keep temp var instread var[:]
+                        self.pos.x = 6400
+                        self.pos.y = 2000
+                        self.location = "dungeon"
+                    elif self.location == "dungeon":
+                        self.pos.x = int(self.temp_pos[0]) + 40
+                        self.pos.y = int(self.temp_pos[1]) + 0
+                        self.location = "overworld"
 
 
 
