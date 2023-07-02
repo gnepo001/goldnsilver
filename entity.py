@@ -87,8 +87,7 @@ class Enemy(pygame.sprite.Sprite):
         #    print("inrange")
         if player.pos.x <= (self.pos.x+300):
             if player.pos.y <= self.pos.y+300:
-                pass
-                #print("inrange")
+                print("inrange")
                 #print('fire')
 
     def update(self,dt):
