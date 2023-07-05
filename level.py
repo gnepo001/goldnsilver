@@ -6,7 +6,7 @@ from timer import Timer
 from tiles import TileMap
 from spritesheet import SpriteSheet
 
-from entity import Enemy,Key
+from entity import Enemy,Key,ElectroBall
 
 class Level:
     def __init__(self):
@@ -26,6 +26,7 @@ class Level:
             )
         self.enemies = Enemy((2400,1800),self.all_sprites,self.player)
         self.key = Key((2400,2400),self.all_sprites)
+        self.electroBall = ElectroBall((2500,2400),self.all_sprites)
         #self.enemies = Enemy((200,200),self.all_sprites)
    
 
