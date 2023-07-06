@@ -13,22 +13,24 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(center=pos)
         self.z = 7
         self.collision_sprites = collision_sprites
-        self.lives = 3
-        self.health_status = "fine"
-        self.hurt_timer = Timer(3000)
         
+        #collison
+        #self.hitbox = self.rect.copy().inflate((-126,-70))
+        self.hitbox = self.rect.copy().inflate((-30,-30))
 
         #movement
         self.direction = pygame.math.Vector2(self.rect.center)
         self.speed = 300
         self.pos = pygame.math.Vector2(self.rect.center)
-
+        
+        #maplocation
         self.location = "overworld"
         self.temp_pos = pygame.math.Vector2()
-
-        #collison
-        #self.hitbox = self.rect.copy().inflate((-126,-70))
-        self.hitbox = self.rect.copy().inflate((-30,-30))
+       
+        #lives and health
+        self.lives = 3
+        self.health_status = "fine"
+        self.hurt_timer = Timer(3000)
 
     def import_assets(self):
         self.file = SpriteSheet("sprites.png")
@@ -137,8 +139,6 @@ class Player(pygame.sprite.Sprite):
                         self.pos.x = int(self.temp_pos[0]) + 40
                         self.pos.y = int(self.temp_pos[1]) + 0
                         self.location = "overworld"
-
-
 
     def update(self,dt):
         print(self.health_status)

@@ -133,12 +133,10 @@ class Ghost(pygame.sprite.Sprite):
         self.collision(self.player)
         self.hitbox.centerx = round(self.pos.x)
         self.rect.centerx = self.hitbox.centerx
-        #print("move " + str(self.status) + " " + str(self.pos.x) + "," + str(self.moveMax +2))
 
     def collision(self,player):
         if self.hitbox.colliderect(player.hitbox):
             player.hurt()
-            print("collison")
 
     def update(self,dt):
         self.move(dt)

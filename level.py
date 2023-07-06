@@ -29,9 +29,7 @@ class Level:
         self.key = Key((2400,2400),self.all_sprites)
         self.ghost = Ghost((2500,2400),self.all_sprites,64,150,self.player)
         self.ghost1 = Ghost((6355,2250),self.all_sprites,560,150,self.player)
-        #self.enemies = Enemy((200,200),self.all_sprites)
    
-
     def run(self,dt):
         self.display_surface.fill('black')
         self.all_sprites.custom_draw(self.player)
