@@ -6,7 +6,7 @@ from timer import Timer
 from tiles import TileMap
 from spritesheet import SpriteSheet
 
-from entity import Enemy,Key,ElectroBall
+from entity import Enemy,Key,Ghost
 
 class Level:
     def __init__(self):
@@ -21,12 +21,14 @@ class Level:
         self.map = TileMap('tile_map.csv',file,groups=self.all_sprites,colli=self.collision_sprites)
         self.player = Player(
             pos=(2400,2300),
+            #pos=(6400,2000),
             group=self.all_sprites,
             collision_sprites=self.collision_sprites
             )
         self.enemies = Enemy((2400,1800),self.all_sprites,self.player)
         self.key = Key((2400,2400),self.all_sprites)
-        self.electroBall = ElectroBall((2500,2400),self.all_sprites)
+        self.ghost = Ghost((2500,2400),self.all_sprites,64,150)
+        self.ghost1 = Ghost((6355,2290),self.all_sprites,560,150)
         #self.enemies = Enemy((200,200),self.all_sprites)
    
 

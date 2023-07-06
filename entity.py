@@ -94,8 +94,8 @@ class Enemy(pygame.sprite.Sprite):
         self.patrol(self.player)
         self.animate(dt)
 
-class ElectroBall(pygame.sprite.Sprite):
-    def __init__(self,pos,group):
+class Ghost(pygame.sprite.Sprite):
+    def __init__(self,pos,group,movement,speed):
         super().__init__(group)
         self.import_assets()
         self.frame_index = 0
@@ -103,10 +103,10 @@ class ElectroBall(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(center=pos)
         self.z = 7
         self.status = "right"
-        self.speed = 80
+        self.speed = speed
 
         self.pos = pygame.math.Vector2(self.rect.center)
-        self.moveMax = 64 + int(self.pos.x)
+        self.moveMax = movement + int(self.pos.x)
         self.startpos = self.pos.x
         self.hitbox = self.rect.copy()
 
@@ -115,7 +115,7 @@ class ElectroBall(pygame.sprite.Sprite):
         self.animations = [self.file.parse_sprite("one.png"),self.file.parse_sprite("two.png")]
 
     def animate(self,dt):
-        self.frame_index += 6 * dt
+        self.frame_index += 4 * dt
         if self.frame_index >=len(self.animations):
             self.frame_index = 0
         self.image = self.animations[int(self.frame_index)]
