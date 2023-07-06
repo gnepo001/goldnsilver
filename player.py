@@ -1,6 +1,7 @@
 import pygame
 
 from spritesheet import SpriteSheet
+from timer import Timer
 
 class Player(pygame.sprite.Sprite):
     def __init__(self,pos,group,collision_sprites):
@@ -12,6 +13,9 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(center=pos)
         self.z = 7
         self.collision_sprites = collision_sprites
+        self.lives = 3
+        self.health_status = "fine"
+        self.hurt_timer = Timer(3000)
         
 
         #movement
@@ -59,7 +63,17 @@ class Player(pygame.sprite.Sprite):
         else:
             self.direction.x = 0
      
-           
+    def check_lives(self):
+        print(self.lives)
+        if self.lives == 0:
+            print(self.lives)
+            print("dead")
+
+    def hurt(self):
+        if self.hurt_timer.active == False:
+            self.health_status = "hurt"
+            self.hurt_timer.activate()
+            self.lives -= 1
 
     def animate(self,dt):
         if self.status == "idle":
@@ -127,7 +141,13 @@ class Player(pygame.sprite.Sprite):
 
 
     def update(self,dt):
+        print(self.health_status)
         self.input()
         self.get_status()
         self.move(dt)
+        if self.hurt_timer.active == True:
+            self.hurt_timer.update()
+            if self.hurt_timer.active == False:
+                self.health_status = "fine"
+        self.check_lives()
         self.animate(dt)

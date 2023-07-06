@@ -27,8 +27,8 @@ class Level:
             )
         self.enemies = Enemy((2400,1800),self.all_sprites,self.player)
         self.key = Key((2400,2400),self.all_sprites)
-        self.ghost = Ghost((2500,2400),self.all_sprites,64,150)
-        self.ghost1 = Ghost((6355,2290),self.all_sprites,560,150)
+        self.ghost = Ghost((2500,2400),self.all_sprites,64,150,self.player)
+        self.ghost1 = Ghost((6355,2250),self.all_sprites,560,150,self.player)
         #self.enemies = Enemy((200,200),self.all_sprites)
    
 

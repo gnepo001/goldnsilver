@@ -95,7 +95,7 @@ class Enemy(pygame.sprite.Sprite):
         self.animate(dt)
 
 class Ghost(pygame.sprite.Sprite):
-    def __init__(self,pos,group,movement,speed):
+    def __init__(self,pos,group,movement,speed,player):
         super().__init__(group)
         self.import_assets()
         self.frame_index = 0
@@ -104,6 +104,7 @@ class Ghost(pygame.sprite.Sprite):
         self.z = 7
         self.status = "right"
         self.speed = speed
+        self.player = player
 
         self.pos = pygame.math.Vector2(self.rect.center)
         self.moveMax = movement + int(self.pos.x)
@@ -115,7 +116,7 @@ class Ghost(pygame.sprite.Sprite):
         self.animations = [self.file.parse_sprite("one.png"),self.file.parse_sprite("two.png")]
 
     def animate(self,dt):
-        self.frame_index += 4 * dt
+        self.frame_index += 2 * dt
         if self.frame_index >=len(self.animations):
             self.frame_index = 0
         self.image = self.animations[int(self.frame_index)]
@@ -124,15 +125,20 @@ class Ghost(pygame.sprite.Sprite):
         if self.status == "right" and self.pos.x <= self.moveMax:
             self.pos.x += 1 *self.speed* dt
             if self.pos.x >= self.moveMax:
-                print("GGGGGGGGGG")
                 self.status = "left"
         elif self.status == "left" and self.pos.x >= self.pos.x:
             self.pos.x -= 1*self.speed * dt
             if self.pos.x <= self.startpos:
                 self.status = "right"
+        self.collision(self.player)
         self.hitbox.centerx = round(self.pos.x)
         self.rect.centerx = self.hitbox.centerx
-        print("move " + str(self.status) + " " + str(self.pos.x) + "," + str(self.moveMax +2))
+        #print("move " + str(self.status) + " " + str(self.pos.x) + "," + str(self.moveMax +2))
+
+    def collision(self,player):
+        if self.hitbox.colliderect(player.hitbox):
+            player.hurt()
+            print("collison")
 
     def update(self,dt):
         self.move(dt)

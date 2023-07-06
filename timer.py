@@ -17,7 +17,9 @@ class Timer:
 
     def update(self):
         current_time = pygame.time.get_ticks()
+        #print("currenttime: "+str(current_time) + " | start: " + str(self.start_time)+" ,"+str(self.duration)+" , "+str(current_time - self.start_time))
         if current_time - self.start_time >= self.duration:
             if self.func and self.start_time !=0:
                 self.func()
-            self.deactivate
+            self.deactivate()
+           
