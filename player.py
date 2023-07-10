@@ -32,7 +32,9 @@ class Player(pygame.sprite.Sprite):
         #lives and health
         self.lives = 3
         self.health_status = "fine"
+
         self.hurt_timer = Timer(3000)
+        self.shoot_timer = Timer(500)
 
     def import_assets(self):
         self.file = SpriteSheet("sprites.png")
@@ -65,15 +67,18 @@ class Player(pygame.sprite.Sprite):
             self.direction.x = -1
             self.status = "left"
         elif keys[pygame.K_SPACE]:
-            self.bullet1 = Bullet((2400,2200),self.group)
+            if self.shoot_timer.active == False:
+                self.shoot_timer.activate()
+                #print(self.shoot_timer.active)
+                Bullet((2400,2200),self.group)
         else:
             self.direction.x = 0
      
     def check_lives(self):
-        print(self.lives)
+        #print(self.lives)
         if self.lives == 0:
             print(self.lives)
-            print("dead")
+            #print("dead")
 
     def hurt(self):
         if self.hurt_timer.active == False:
@@ -145,7 +150,7 @@ class Player(pygame.sprite.Sprite):
                         self.location = "overworld"
 
     def update(self,dt):
-        print(self.health_status)
+        #print(self.health_status)
         self.input()
         self.get_status()
         self.move(dt)
@@ -153,5 +158,6 @@ class Player(pygame.sprite.Sprite):
             self.hurt_timer.update()
             if self.hurt_timer.active == False:
                 self.health_status = "fine"
+        self.shoot_timer.update()
         self.check_lives()
         self.animate(dt)
