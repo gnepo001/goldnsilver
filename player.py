@@ -33,6 +33,7 @@ class Player(pygame.sprite.Sprite):
         self.lives = 3
         self.health_status = "fine"
 
+        self.shooting_dir = "right"
         self.hurt_timer = Timer(3000)
         self.shoot_timer = Timer(500)
 
@@ -54,26 +55,37 @@ class Player(pygame.sprite.Sprite):
         if keys[pygame.K_UP]:
             self.direction.y = -1
             self.status = "up"
+            self.shooting_dir = "up"
         elif keys[pygame.K_DOWN]:
             self.direction.y = 1
             self.status = "down"
+            self.shooting_dir = "down"
         else:
             self.direction.y = 0
         
         if keys[pygame.K_RIGHT]:
             self.direction.x = 1
             self.status = "right"
+            self.shooting_dir = "right"
         elif keys[pygame.K_LEFT]:
             self.direction.x = -1
             self.status = "left"
-        elif keys[pygame.K_SPACE]:
-            if self.shoot_timer.active == False:
-                self.shoot_timer.activate()
-                #print(self.shoot_timer.active)
-                Bullet((2400,2200),self.group)
+            self.shooting_dir = "left"
         else:
             self.direction.x = 0
      
+        if keys[pygame.K_SPACE]:
+            if self.shoot_timer.active == False and self.status == "idle":
+                self.shoot_timer.activate()
+                if self.shooting_dir == "right":
+                    Bullet((self.pos.x+10,self.pos.y),self.group,"right")
+                elif self.shooting_dir == "left":
+                    Bullet((self.pos.x-10,self.pos.y),self.group,"left")
+                elif self.shooting_dir == "up":
+                    Bullet((self.pos.x,self.pos.y - 10),self.group,"up")
+                elif self.shooting_dir == "down":
+                    Bullet((self.pos.x,self.pos.y+10),self.group,"down")
+    
     def check_lives(self):
         #print(self.lives)
         if self.lives == 0:
