@@ -2,10 +2,12 @@ import pygame
 
 from spritesheet import SpriteSheet
 from timer import Timer
+from bullet import Bullet
 
 class Player(pygame.sprite.Sprite):
     def __init__(self,pos,group,collision_sprites):
         super().__init__(group)
+        self.group = group
         self.import_assets()
         self.frame_index = 0
         self.status = "idle"
@@ -62,6 +64,8 @@ class Player(pygame.sprite.Sprite):
         elif keys[pygame.K_LEFT]:
             self.direction.x = -1
             self.status = "left"
+        elif keys[pygame.K_SPACE]:
+            self.bullet1 = Bullet((2400,2200),self.group)
         else:
             self.direction.x = 0
      
