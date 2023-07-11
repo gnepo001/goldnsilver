@@ -32,10 +32,12 @@ class Player(pygame.sprite.Sprite):
         #lives and health
         self.lives = 3
         self.health_status = "fine"
-
-        self.shooting_dir = "right"
         self.hurt_timer = Timer(3000)
+
+        #bullet 
+        self.shooting_dir = "right"
         self.shoot_timer = Timer(500)
+        self.bullet_list = [] #keeps track of bullets, memory managament
 
     def import_assets(self):
         self.file = SpriteSheet("sprites.png")
@@ -78,13 +80,13 @@ class Player(pygame.sprite.Sprite):
             if self.shoot_timer.active == False and self.status == "idle":
                 self.shoot_timer.activate()
                 if self.shooting_dir == "right":
-                    Bullet((self.pos.x+10,self.pos.y),self.group,"right")
+                    self.bullet_list.append(Bullet((self.pos.x+10,self.pos.y),self.group,"right"))
                 elif self.shooting_dir == "left":
-                    Bullet((self.pos.x-10,self.pos.y),self.group,"left")
+                    self.bullet_list.append(Bullet((self.pos.x-10,self.pos.y),self.group,"left"))
                 elif self.shooting_dir == "up":
-                    Bullet((self.pos.x,self.pos.y - 10),self.group,"up")
+                    self.bullet_list.append(Bullet((self.pos.x,self.pos.y - 10),self.group,"up"))
                 elif self.shooting_dir == "down":
-                    Bullet((self.pos.x,self.pos.y+10),self.group,"down")
+                    self.bullet_list.append(Bullet((self.pos.x,self.pos.y+10),self.group,"down"))
     
     def check_lives(self):
         #print(self.lives)
@@ -97,6 +99,28 @@ class Player(pygame.sprite.Sprite):
             self.health_status = "hurt"
             self.hurt_timer.activate()
             self.lives -= 1
+
+    #checks if bullet is still in visable pygame display and removes and kills sprite 
+    def bulletCheck(self):
+        for bullet in self.bullet_list:
+            if bullet.bullet_direction == "right":
+                if bullet.pos.x > self.pos.x + pygame.display.get_surface().get_size()[0]:
+                    bullet.kill()
+                    self.bullet_list.remove(bullet)
+            if bullet.bullet_direction == "left":
+                if bullet.pos.x < self.pos.x - pygame.display.get_surface().get_size()[0]:
+                    bullet.kill()
+                    self.bullet_list.remove(bullet)
+            if bullet.bullet_direction == "up":
+                if bullet.pos.y < self.pos.y - pygame.display.get_surface().get_size()[1]:
+                    bullet.kill()
+                    self.bullet_list.remove(bullet)
+            if bullet.bullet_direction == "down":
+                if bullet.pos.y > self.pos.y + pygame.display.get_surface().get_size()[1]:
+                    bullet.kill()
+                    self.bullet_list.remove(bullet)
+                   
+            print(len(self.bullet_list))
 
     def animate(self,dt):
         if self.status == "idle":
@@ -171,5 +195,6 @@ class Player(pygame.sprite.Sprite):
             if self.hurt_timer.active == False:
                 self.health_status = "fine"
         self.shoot_timer.update()
+        self.bulletCheck()
         self.check_lives()
         self.animate(dt)
