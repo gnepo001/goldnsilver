@@ -6,7 +6,7 @@ class Bullet(pygame.sprite.Sprite):
     def __init__(self,pos,group,direction):
         super().__init__(group)
         self.file = SpriteSheet("sprites.png")
-        self.image = self.file.parse_sprite("key1.png")
+        self.image = self.file.parse_sprite("bullet.png")
         self.rect = self.image.get_rect(center=pos)
         self.z = 7
         self.bullet_direction = direction
