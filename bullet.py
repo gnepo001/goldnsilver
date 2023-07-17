@@ -41,8 +41,9 @@ class Bullet(pygame.sprite.Sprite):
         #print(self.collision_sprites.sprites())
         for sprite in self.collision_sprites.sprites():
             if hasattr(sprite,'killable'):
+                print(sprite)
                 if sprite.hitbox.colliderect(self.hitbox):
-                    print("hit")
+                    sprite.kill()
 
     def update(self,dt):
         self.move(dt)
