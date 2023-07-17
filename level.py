@@ -13,7 +13,7 @@ class Level:
     def __init__(self):
         self.display_surface = pygame.display.get_surface()
         self.all_sprites = CameraGroup()
-        self.collision_sprites = pygame.sprite.Group()
+        self.collision_sprites = pygame.sprite.Group() #need to create a list of entites to keep track of it
         self.setup()
 
     def setup(self):

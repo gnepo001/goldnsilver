@@ -110,6 +110,7 @@ class Ghost(pygame.sprite.Sprite):
         self.moveMax = movement + int(self.pos.x)
         self.startpos = self.pos.x
         self.hitbox = self.rect.copy()
+        self.killable = True
 
     def import_assets(self):
         self.file = SpriteSheet('sprites.png')

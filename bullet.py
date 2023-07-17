@@ -10,7 +10,7 @@ class Bullet(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(center=pos)
         self.z = 7
         self.bullet_direction = direction
-        #self.collision_sprites = collision_sprites
+        self.collision_sprites = group
 
         self.speed = 400
         self.pos = pygame.math.Vector2(self.rect.center)
@@ -18,6 +18,8 @@ class Bullet(pygame.sprite.Sprite):
         self.direction.x = 1
         self.direction.y = 1
 
+        #self.hitbox = self.rect.copy().inflate((-64 ,-64))
+        self.hitbox = self.rect.copy()
     
     def move(self,dt):
         if self.bullet_direction == "right":
@@ -32,6 +34,15 @@ class Bullet(pygame.sprite.Sprite):
         elif self.bullet_direction == "down":
             self.pos.y += self.direction.y * self.speed * dt
             self.rect.centery = round(self.pos.y)
+        self.collision()
+        self.hitbox = self.rect.copy().inflate((-32,32))
+
+    def collision(self):
+        #print(self.collision_sprites.sprites())
+        for sprite in self.collision_sprites.sprites():
+            if hasattr(sprite,'killable'):
+                if sprite.hitbox.colliderect(self.hitbox):
+                    print("hit")
 
     def update(self,dt):
         self.move(dt)
