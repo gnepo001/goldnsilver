@@ -49,6 +49,8 @@ class Player(pygame.sprite.Sprite):
             'up':[self.file.parse_sprite("player8.png"),self.file.parse_sprite("player9.png"),self.file.parse_sprite("player10.png")],
             'down':[self.file.parse_sprite("player11.png"),self.file.parse_sprite("player12.png")],
             'up_idle':[self.file.parse_sprite("player6.png"),self.file.parse_sprite("player7.png")],
+            'shoot':[self.file.parse_sprite("player13.png")],
+            'shoot_left':[pygame.transform.flip(self.file.parse_sprite("player13.png"),True,False)],
         }
 
     def input(self):
@@ -80,9 +82,11 @@ class Player(pygame.sprite.Sprite):
             if self.shoot_timer.active == False and self.status == "idle":
                 self.shoot_timer.activate()
                 if self.shooting_dir == "right":
-                    self.bullet_list.append(Bullet((self.pos.x+10,self.pos.y),self.group,"right"))
+                    self.status = "shoot"
+                    self.bullet_list.append(Bullet((self.pos.x+20,self.pos.y-30),self.group,"right"))
                 elif self.shooting_dir == "left":
-                    self.bullet_list.append(Bullet((self.pos.x-10,self.pos.y),self.group,"left"))
+                    self.status = "shoot_left"
+                    self.bullet_list.append(Bullet((self.pos.x-10,self.pos.y-30),self.group,"left"))
                 elif self.shooting_dir == "up":
                     self.bullet_list.append(Bullet((self.pos.x,self.pos.y - 10),self.group,"up"))
                 elif self.shooting_dir == "down":
@@ -134,7 +138,7 @@ class Player(pygame.sprite.Sprite):
         self.image = self.animations[self.status][int(self.frame_index)]
 
     def get_status(self):
-        if self.direction.magnitude() == 0:
+        if self.direction.magnitude() == 0 and self.shoot_timer.active == False:
             self.status = "idle"
     
     def move(self,dt):
@@ -177,8 +181,8 @@ class Player(pygame.sprite.Sprite):
                 if sprite.enterbox.colliderect(self.hitbox):
                     if self.location == "overworld":
                         self.temp_pos = self.pos[:] #when copying lists or vectors/arrys a simple assigment wont keep temp var instread var[:]
-                        self.pos.x = 6400
-                        self.pos.y = 2000
+                        self.pos.x = 6600
+                        self.pos.y = 1900
                         self.location = "dungeon"
                     elif self.location == "dungeon":
                         self.pos.x = int(self.temp_pos[0]) + 40
@@ -187,8 +191,9 @@ class Player(pygame.sprite.Sprite):
 
     def update(self,dt):
         #print(self.health_status)
-        self.input()
+        print(self.shoot_timer.active)
         self.get_status()
+        self.input()
         self.move(dt)
         if self.hurt_timer.active == True:
             self.hurt_timer.update()
