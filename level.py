@@ -21,7 +21,7 @@ class Level:
         file = SpriteSheet("tiles.png")
         self.map = TileMap('tile_map.csv',file,groups=self.all_sprites,colli=self.collision_sprites)
         self.player = Player(
-            pos=(2400,2300),
+            pos=(2800,2700),
             #pos=(6400,2000),
             group=self.all_sprites,
             collision_sprites=self.collision_sprites

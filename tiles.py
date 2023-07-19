@@ -87,6 +87,8 @@ class TileMap():
                     tiles.append(Tile('purple_stone.png', x * self.tile_size, y * self.tile_size, self.spritesheet,groups, z=1))
                 elif tile == '11':
                     tiles.append(Stone('purple_brick.png', x * self.tile_size, y * self.tile_size, self.spritesheet,groups,colli, z=1))
+                elif tile == '12':
+                    tiles.append(Tile('dock_1.png', x * self.tile_size, y * self.tile_size, self.spritesheet,groups, z=1))
                     # Move to next tile in current row
                 x += 1
 
