@@ -65,23 +65,23 @@ class TileMap():
             for tile in row:
                 if tile == '0':
                     self.start_x, self.start_y = x * self.tile_size, y * self.tile_size
-                elif tile == '1':
+                elif tile == '01':
                     tiles.append(Tile('brown.png', x * self.tile_size, y * self.tile_size, self.spritesheet,groups, z=1))
-                elif tile == '2':
+                elif tile == '02':
                     tiles.append(Tile('green.png', x * self.tile_size, y * self.tile_size, self.spritesheet,groups, z=1))
-                elif tile == '3':
+                elif tile == '03':
                     tiles.append(Stone('stone.png', x * self.tile_size, y * self.tile_size, self.spritesheet,groups,colli, z=1))
-                elif tile == '4':
+                elif tile == '04':
                     tiles.append(Stairs('brown_stairs.png', x * self.tile_size, y * self.tile_size, self.spritesheet,groups,colli, z=1))
-                elif tile == '5':
+                elif tile == '05':
                     tiles.append(Tile('water.png', x * self.tile_size, y * self.tile_size, self.spritesheet,groups, z=1))
-                elif tile == '6':
+                elif tile == '06':
                     tiles.append(Barrier('water.png', x * self.tile_size, y * self.tile_size, self.spritesheet,groups,colli, z=1))
-                elif tile == '7':
+                elif tile == '07':
                     tiles.append(Barrier('stone_greenTop.png', x * self.tile_size, y * self.tile_size, self.spritesheet,groups,colli, z=1))
-                elif tile == '8':
+                elif tile == '08':
                     tiles.append(Barrier('tree.png', x * self.tile_size, y * self.tile_size, self.spritesheet,groups,colli, z=1))
-                elif tile == '9':
+                elif tile == '09':
                     tiles.append(Barrier('tree_2.png', x * self.tile_size, y * self.tile_size, self.spritesheet,groups,colli, z=1))
                 elif tile == '10':
                     tiles.append(Tile('purple_stone.png', x * self.tile_size, y * self.tile_size, self.spritesheet,groups, z=1))
@@ -89,6 +89,18 @@ class TileMap():
                     tiles.append(Stone('purple_brick.png', x * self.tile_size, y * self.tile_size, self.spritesheet,groups,colli, z=1))
                 elif tile == '12':
                     tiles.append(Tile('dock_1.png', x * self.tile_size, y * self.tile_size, self.spritesheet,groups, z=1))
+                elif tile == '13':
+                     tiles.append(Stone('stone_2.png', x * self.tile_size, y * self.tile_size, self.spritesheet,groups,colli, z=1))
+                elif tile == '14':
+                     tiles.append(Stone('stone_3.png', x * self.tile_size, y * self.tile_size, self.spritesheet,groups,colli, z=1))
+                elif tile == '15':
+                     tiles.append(Stone('stone_4.png', x * self.tile_size, y * self.tile_size, self.spritesheet,groups,colli, z=1))
+                elif tile == '16':
+                     tiles.append(Stone("stone_5.png", x * self.tile_size, y * self.tile_size, self.spritesheet,groups,colli, z=1))
+                elif tile == '17':
+                     tiles.append(Stone("stone_5.png", x * self.tile_size, y * self.tile_size, self.spritesheet,groups,colli, z=1))
+                elif tile == '18':
+                     tiles.append(Barrier("trees.png", x * self.tile_size, y * self.tile_size, self.spritesheet,groups,colli, z=1))
                     # Move to next tile in current row
                 x += 1
 

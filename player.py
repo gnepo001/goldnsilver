@@ -22,7 +22,8 @@ class Player(pygame.sprite.Sprite):
 
         #movement
         self.direction = pygame.math.Vector2(self.rect.center)
-        self.speed = 300
+        #self.speed = 300
+        self.speed = 1000
         self.pos = pygame.math.Vector2(self.rect.center)
         
         #maplocation
