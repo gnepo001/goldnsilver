@@ -101,6 +101,10 @@ class TileMap():
                      tiles.append(Stone("stone_5.png", x * self.tile_size, y * self.tile_size, self.spritesheet,groups,colli, z=1))
                 elif tile == '18':
                      tiles.append(Barrier("trees.png", x * self.tile_size, y * self.tile_size, self.spritesheet,groups,colli, z=1))
+                elif tile == '19':
+                     tiles.append(Tile('hell_1.png', x * self.tile_size, y * self.tile_size, self.spritesheet,groups, z=1))
+                elif tile == '20':
+                     tiles.append(Barrier("hell_2.png", x * self.tile_size, y * self.tile_size, self.spritesheet,groups,colli, z=1))
                     # Move to next tile in current row
                 x += 1
 
