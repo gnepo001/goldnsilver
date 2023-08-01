@@ -42,7 +42,17 @@ class Level:
     def run(self,dt):
         self.display_surface.fill('black')
         self.all_sprites.custom_draw(self.player)
+        #image = SpriteSheet("sprites.png").parse_sprite("heart.png")
+        #rect = image.get_rect(center=(50,50))
+        self.draw_hud(self.player,self.display_surface)
         self.all_sprites.update(dt)
+
+    def draw_hud(self,player,surf):
+        image = SpriteSheet("sprites.png").parse_sprite("heart.png")
+        x = 10
+        for life in range(0,player.lives):
+            surf.blit(image,(x,0))
+            x += 100
 
 class CameraGroup(pygame.sprite.Group):
     def __init__(self):
