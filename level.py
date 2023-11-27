@@ -40,6 +40,8 @@ class Level:
         Ghost((2500,1900),self.all_sprites,64,150,self.player)
         Ghost((2500,2100),self.all_sprites,64,150,self.player)
         Ghost((2500,2600),self.all_sprites,64,150,self.player)
+        Ghost((2000,620),self.all_sprites,320,200,self.player)
+        Ghost((2000,620),self.all_sprites,320,250,self.player)
 
         #upper half
         Ghost((750,425),self.all_sprites,800,250,self.player)
